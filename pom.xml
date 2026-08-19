@@ -20,8 +20,7 @@
 
   <dependencies>
     <!-- ===================================================================
-         Wired in below by OrderCommentLogger, NotificationTemplateService,
-         LegacyOrderXmlImporter, and SessionCacheDeserializer.
+         Wired in below by OrderCommentLogger and NotificationTemplateService.
          Each calls the documented vulnerable API for its CVE.
          =================================================================== -->
     <dependency>
@@ -33,16 +32,6 @@
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-text</artifactId>
       <version>1.9</version>
-    </dependency>
-    <dependency>
-      <groupId>com.thoughtworks.xstream</groupId>
-      <artifactId>xstream</artifactId>
-      <version>1.4.19</version>
-    </dependency>
-    <dependency>
-      <groupId>commons-collections</groupId>
-      <artifactId>commons-collections</artifactId>
-      <version>3.2.1</version>
     </dependency>
 
     <!-- ===================================================================
@@ -59,9 +48,26 @@
     </dependency>
 
     <!-- ===================================================================
+         LegacyOrderXmlImporter and SessionCacheDeserializer exist in source
+         but nothing calls them anymore - a dead import path and a retired
+         cache layer, left on the classpath the way real cleanups often
+         leave code behind.
+         =================================================================== -->
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+      <version>1.4.19</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>3.2.1</version>
+    </dependency>
+
+    <!-- ===================================================================
          Declared for planned/legacy features but never called from this
-         codebase. Realistic dependency bloat: added for a feature that
-         got shelved, or pulled in and never fully wired up.
+         codebase at all. Realistic dependency bloat: added for a feature
+         that got shelved, or pulled in and never fully wired up.
          =================================================================== -->
     <dependency>
       <groupId>com.google.guava</groupId>
@@ -82,6 +88,27 @@
       <groupId>org.bouncycastle</groupId>
       <artifactId>bcprov-jdk15on</artifactId>
       <version>1.51</version>
+    </dependency>
+    <dependency>
+      <groupId>org.bouncycastle</groupId>
+      <artifactId>bcpkix-jdk15on</artifactId>
+      <version>1.51</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.velocity</groupId>
+      <artifactId>velocity</artifactId>
+      <version>1.6.4</version>
+    </dependency>
+    <dependency>
+      <groupId>dom4j</groupId>
+      <artifactId>dom4j</artifactId>
+      <version>1.6.1</version>
+      <exclusions>
+        <exclusion>
+          <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 
