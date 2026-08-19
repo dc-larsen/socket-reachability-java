@@ -24,14 +24,6 @@ public class Main {
         String rendered = notifications.renderTemplate("Hi ${sys:user.name}, your order shipped.");
         System.out.println(rendered);
 
-        FeatureFlagConfigLoader flags = new FeatureFlagConfigLoader();
-        Object flagValues = flags.loadConfig("expressCheckout: true\nbetaSearch: false\n");
-        System.out.println(flagValues);
-
-        PartnerWebhookDeserializer webhooks = new PartnerWebhookDeserializer();
-        Object webhookPayload = webhooks.deserialize("[\"java.util.HashMap\",{\"carrier\":\"ups\",\"status\":\"delivered\"}]");
-        System.out.println(webhookPayload);
-
         LegacyOrderXmlImporter xmlImporter = new LegacyOrderXmlImporter();
         Object order = xmlImporter.importOrders("<order><id>10231</id></order>");
         System.out.println(order);
